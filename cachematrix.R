@@ -1,6 +1,7 @@
 
 
-## This function is to store the cached inverse of matrix
+## This function makes the list of functions to be used to get the inverse
+## and storing the cached data
 
 makeCacheMatrix <- function(x = matrix()) {
         m <- NULL
@@ -8,6 +9,10 @@ makeCacheMatrix <- function(x = matrix()) {
                 x <<- y
                 m <<- NULL
         }
+## the above set() sets the value of matrix using lexical scoping
+## get() gets the matrix data
+## setinverse() calculates the inverse
+## getinverse() gets the invese
         get <- function() x
         setinverse <- function(inverse) m <<- inverse
         getinverse <- function() m
@@ -18,7 +23,10 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## this  function is to solve the inverse of matrix and storing it in cached form
+## this  function is to solve the inverse of matrix if it is not already available
+## in the makeCacheMatrix()
+## if the matrix is already available it gets the cached value of the inverse of
+## the existing matrix
 
 cacheSolve <- function(x, ...) {
         m <- x$getinverse()
